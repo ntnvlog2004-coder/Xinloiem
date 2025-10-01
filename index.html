@@ -7,7 +7,7 @@
     body {
       margin:0;
       font-family:Arial,sans-serif;
-      background:#ffe9f0; /* nền hồng nhạt */
+      background:#ffe9f0;
       overflow:hidden;
       text-align:center;
     }
@@ -39,7 +39,7 @@
 
     /* Scene 2 */
     .scene2 {
-      position:fixed;inset:0;
+      position:fixed; inset:0;
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -58,7 +58,7 @@
       animation:popIn 1s ease;
     }
     .meme2 {
-      width:375px; /* to hơn meme1 */
+      width:375px;
       border-radius:20px;
       margin:10px;
       animation:popIn 1.2s ease;
@@ -100,8 +100,9 @@
   <!-- Scene 2 -->
   <div class="scene2" id="scene2">
     <!-- Nhạc nền -->
-    <audio id="bgMusic" autoplay loop>
-      <source src="7071302939435.mp4" type="audio/mp3">
+    <audio id="bgMusic" controls loop>
+      <source src="nhac.mp3" type="audio/mpeg">
+      Trình duyệt của bạn không hỗ trợ audio.
     </audio>
 
     <!-- Lời xin lỗi -->
@@ -124,15 +125,17 @@ const music=document.getElementById('bgMusic');
 
 let messages=[
   "Anh xin lỗi 💖","Anh sai roiii","Xin lỗi vì đã làm em buồnn",
-  "Em đừng giận anh nữa nhaaa"," Tuy anh lớn roi nhưng mà vẫn còn nhiều thiếu sótt=((",
+  "Em đừng giận anh nữa nhaaa","Tuy anh lớn roi nhưng mà vẫn còn nhiều thiếu sótt=((",
   "Anh thật lòng xin lỗi bạn nhỏ ^^", "Em cho anh ạ em một cái nhaaa","Anh sẽ cố gắng sửa",
-"Bỏ qua cho anh lần này nhaaa"
+  "Bỏ qua cho anh lần này nhaaa"
 ];
 
 startBtn.addEventListener('click', ()=>{
   intro.style.display="none";
   scene2.classList.add('active');
-  music.play();
+
+  // Phát nhạc khi bấm nút (đảm bảo điện thoại phát được)
+  music.play().catch(()=>console.log("Nhạc chưa tự play được, hãy nhấn play trên audio controls"));
 
   // Chữ rơi
   setInterval(()=>{
@@ -143,7 +146,7 @@ startBtn.addEventListener('click', ()=>{
     el.style.fontSize=(16+Math.random()*10)+"px";
     fallfield.appendChild(el);
     setTimeout(()=>el.remove(),5000);
-  },750); // mỗi 1 giây rơi 1 chữ
+  },750);
 });
 </script>
 </body>
